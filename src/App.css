@@ -13,3 +13,14 @@
   display: none;
 
 }
+.no-outline:focus{
+  outline: none;
+}
+@media screen and (min-width: 768px) {
+  .adjustImg {
+    width: 400px !important;
+    height: 600px !important;
+  }
+  
+}
+

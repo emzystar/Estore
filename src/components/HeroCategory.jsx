@@ -13,7 +13,7 @@ export default function HomeCategory() {
   const bannerCategory = categories.filter(
     (category) => category.name === "Fashion" || category.name === "Earpiece"
   );
-  console.log("banner", bannerCategory);
+ 
 
   return (
     <Container className="mt-4">

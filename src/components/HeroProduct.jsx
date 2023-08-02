@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 export default function HeroProduct({ data, error, loading }) {
   const bannerProduct = data.filter((product) => product.price >= 500);
-  console.log("banner", bannerProduct);
+  
 
   return (
     <>

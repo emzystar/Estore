@@ -4,8 +4,11 @@ import Spinner from "../utils/Spinner";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import FormatCurrency from "../utils/FormatCurrency";
+import { useStateContext } from "./lib/ContextApi";
+import toast from "react-hot-toast"
 
 export default function FeaturProducts({ data, error, loading }) {
+  const {increaseBagQuantity} = useStateContext()
   const scrollRef = useRef();
   const scroll = (direction) => {
     const { current } = scrollRef;
@@ -16,7 +19,7 @@ export default function FeaturProducts({ data, error, loading }) {
   const featureProduct = data.filter(
     (product) => product.price >= 700 && product.price <= 5000
   );
-  console.log("product", featureProduct);
+  
   return (
     <Container className="mt-5 p-3">
       <h6 className="mt-5">Featured Products</h6>
@@ -44,14 +47,15 @@ export default function FeaturProducts({ data, error, loading }) {
                     </Link>
                     <p className="text-dark">{product.title}</p>
                     <p className='text-dark'>{FormatCurrency(product.price)}</p>
-                    <Button variant='outline-dark' className='border-none rounded-0'>buy me</Button>
+                    <Button variant='outline-dark' className='border-none rounded-0' onClick={() => {increaseBagQuantity(product.id)
+                      toast.success(`${product.title} added to bag`)}}>ADD TO BAG</Button>
                   </div>
                 ))}
               </Container>
               <div className='d-none d-md-block w-100 position-absolute top-50'>
                 <div className='d-flex justify-content-between align-items-center'>
-                    <AiOutlineArrowLeft  size="2rem" syle={{cursor: "pointer"}} onClick={()=> scroll("left")}/>
-                    <AiOutlineArrowRight size="2rem" syle={{cursor: "pointer"}} onClick={()=> scroll("right")}/>
+                    <AiOutlineArrowLeft  size="2rem" style={{cursor: "pointer"}} onClick={()=> scroll("left")}/>
+                    <AiOutlineArrowRight size="2rem" style={{cursor: "pointer"}} onClick={()=> scroll("right")}/>
 
                 </div>
 

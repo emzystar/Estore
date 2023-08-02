@@ -4,9 +4,11 @@ import { NavLink } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Twirl as Hamburger } from "hamburger-react";
 import Navlocker from './Navlocker'
+import { useStateContext } from "./lib/ContextApi";
 
 export default function Navhead() {
   const [isOpen, setOpen] = useState(false);
+  const {bagQuantity} = useStateContext()
 
   useEffect(() => {
     if(isOpen) {
@@ -33,7 +35,12 @@ export default function Navhead() {
           <div className="d-flex gap-3">
             <NavLink to='/login' className="text-secondary ">log in</NavLink>
             <NavLink to="/cart" className="text-secondary ">
-              <AiOutlineShoppingCart size="1.5rem" />
+            <div className="position-relative">
+            <AiOutlineShoppingCart size="1.5rem" />
+            <p className='position-absolute top-0 start-100 translate-middle'>{bagQuantity > 0 ? bagQuantity: 0}</p>
+
+            </div>
+              
             </NavLink>
           </div>
         </div>
